@@ -18,7 +18,8 @@ public class UserDetails {
     private double weight;
     private int height;
     private String gender;
-    private String activity;
+    private int activity;
+    private int purpose;
 
     public long getId() {
         return id;
@@ -60,12 +61,20 @@ public class UserDetails {
         this.gender = gender;
     }
 
-    public String getActivity() {
+    public int getActivity() {
         return activity;
     }
 
-    public void setActivity(String activity) {
+    public void setActivity(int activity) {
         this.activity = activity;
+    }
+
+    public int getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(int purpose) {
+        this.purpose = purpose;
     }
 
     public Map<Double, String> getMap() {

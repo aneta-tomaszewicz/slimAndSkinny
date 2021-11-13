@@ -6,8 +6,8 @@
 <h2> Oblicz swoje zapotrzebowanie kaloryczne</h2>
 <form>
 Płeć:
-Kobieta:<input type="radio" name ="gender" value="F" multiple ="false">
-Mężczyzna:<input type="radio" name ="gender" value="M" multiple ="false"><br>
+Kobieta:<input type="radio" name ="gender" value="F" >
+Mężczyzna:<input type="radio" name ="gender" value="M" "><br>
 Wiek:<input type="number" placeholder="18-100 lat"><br>
 Wzrost:<input type="number" placeholder="cm"><br>
 Waga:<input type="number" placeholder="kg"><br>

@@ -59,14 +59,6 @@ public class UserController {
         return "/user/login";
     }
 
-    @GetMapping("/calculator")
-    public String calculate(Model model) {
-        model.addAttribute("userDetails", new UserDetails());
-        return "/user/caloriesCalculator";
-
-    }
-
-
 
 
 
