@@ -1,5 +1,6 @@
 package com.example.slimandskinny.controller;
 import com.example.slimandskinny.entity.User;
+import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,13 +49,21 @@ public class UserController {
     }
 
     @PostMapping("/login")
+
     public String logIn(@RequestParam String email, @RequestParam String password){
         User user = userRepository.findUserByEmailAndAndPassword(email, password);
         if ((user.getEmail().equals(email)) && (user.getPassword().equals(password))){
 
-        return "Zalogowano";
+        return "/user/home";
         }
-        return "Niepoprawne dane logowania";
+        return "/user/login";
+    }
+
+    @GetMapping("/calculator")
+    public String calculate(Model model) {
+        model.addAttribute("userDetails", new UserDetails());
+        return "/user/caloriesCalculator";
+
     }
 
 

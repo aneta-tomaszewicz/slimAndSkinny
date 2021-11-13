@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <form:form method="post" modelAttribute="user">
-    Login(email): <form:input path="email" type="email"/><br>
-    Imię: <form:input path="firstName"/><br>
-    Hasło:<form:input path="password" type="password"/><br>
+    Login(email): <form:input path="email" type="email" placeholder ="Podaj adres email"/><br>
+    Imię: <form:input path="firstName" placeholder ="Podaj swoje imię"/><br>
+    Hasło:<form:input path="password" type="password" placeholder ="Podaj hasło"/><br>
 <%--    Powtórz hasło:<form:input path="password" type="password"/><br>--%>
     <input type="submit" value="Załóż konto">
 
