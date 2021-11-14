@@ -17,9 +17,9 @@ public class UserDetails {
     private int age;
     private double weight;
     private int height;
-    private String gender;
-    private String activity;
-    private String purpose;
+    private int gender;
+    private double activity;
+    private int purpose;
 
     public long getId() {
         return id;
@@ -53,27 +53,27 @@ public class UserDetails {
         this.height = height;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public String getActivity() {
+    public double getActivity() {
         return activity;
     }
 
-    public void setActivity(String activity) {
+    public void setActivity(double activity) {
         this.activity = activity;
     }
 
-    public String getPurpose() {
+    public int getPurpose() {
         return purpose;
     }
 
-    public void setPurpose(String purpose) {
+    public void setPurpose(int purpose) {
         this.purpose = purpose;
     }
 

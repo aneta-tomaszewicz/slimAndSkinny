@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-
 public class UserDetailsController {
 
     private final UserDetailsRepository userDetailsRepository;
@@ -21,11 +20,40 @@ public class UserDetailsController {
     }
 
     @GetMapping("/calculator")
-    public String calculateData(Model model) {
-        model.addAttribute("userDetails", new UserDetails());
+    public String calculateData() {
         return "/user/caloriesCalculator";
 
     }
+
+    @PostMapping("/calculator")
+    @ResponseBody
+    public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
+        UserDetails userDetails = new UserDetails();
+        userDetails.setAge(age);
+        userDetails.setWeight(weight);
+        userDetails.setHeight(height);
+        userDetails.setGender(gender);
+        userDetails.setActivity(activity);
+        userDetails.setPurpose(purpose);
+        userDetailsRepository.save(userDetails);
+        return "/caloricDemand";
+    }
+
+    @GetMapping("/caloricDemand")
+    @ResponseBody
+    public String calculateCalories(){
+        double caloricDemand;
+        UserDetails userDetails = new UserDetails();
+
+        if (userDetails.getGender()==655){
+            caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
+        return  "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+    }
+        caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
+        return "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+    }
+
+    /*@MOdelAtrtribute do kalkulatora
     @PostMapping("/calculator")
     @ResponseBody
     public String saveCalculateData(@ModelAttribute("userDetails") UserDetails userDetails1){
@@ -47,20 +75,9 @@ public class UserDetailsController {
     public List<String> purposes(){
         return Arrays.asList("chcę schudnąć", "chcę utrzymać wagę", "chcę przytyć");
     }
+*/
 
 
-/*    @PostMapping("/calculator")
-    @ResponseBody
-    public String calculateCalories(@RequestParam String gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam int activity, @RequestParam int purpose){
-        double caloricDemand;
-
-        if (gender.equals("F")){
-            caloricDemand = 655+(9.6 * weight)+(1.8*height)-(4.7*age)+purpose;
-        return  "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
-    }
-        caloricDemand =66+(13.7*weight)+(5*height)-(4.7*age)+purpose;
-        return "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
-    }*/
 
 
 }
