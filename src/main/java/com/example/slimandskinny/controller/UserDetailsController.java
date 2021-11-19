@@ -1,5 +1,6 @@
 package com.example.slimandskinny.controller;
 
+import com.example.slimandskinny.entity.User;
 import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserDetailsController {
 
     private final UserDetailsRepository userDetailsRepository;
+
 
     public UserDetailsController(UserDetailsRepository userDetailsRepository) {
         this.userDetailsRepository = userDetailsRepository;
@@ -41,17 +43,20 @@ public class UserDetailsController {
 
     @GetMapping("/caloricDemand")
     @ResponseBody
-    public String calculateCalories(){
+    public String calculateCalories() {
+       // User user = new User();
         double caloricDemand;
         UserDetails userDetails = new UserDetails();
+        return "zapotrzebiwanie" +userDetails.getUser();
+    }
 
-        if (userDetails.getGender()==655){
+/*        if (userDetails.getGender()==655){
             caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
         return  "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
         caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
         return "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
-    }
+    }*/
 
     /*@MOdelAtrtribute do kalkulatora
     @PostMapping("/calculator")

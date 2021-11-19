@@ -1,9 +1,6 @@
 package com.example.slimandskinny.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +17,17 @@ public class UserDetails {
     private int gender;
     private double activity;
     private int purpose;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getId() {
         return id;
