@@ -1,7 +1,6 @@
 package com.example.slimandskinny.service;
-
-import com.example.slimandskinny.entity.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 

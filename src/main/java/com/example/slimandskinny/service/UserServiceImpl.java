@@ -5,10 +5,12 @@ import com.example.slimandskinny.entity.User;
 import com.example.slimandskinny.repository.RoleRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

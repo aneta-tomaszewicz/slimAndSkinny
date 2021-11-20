@@ -35,12 +35,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
                 grantedAuthorities, user);
 
     }
-    @GetMapping("/admin")
-    @ResponseBody
-    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
-        log.info("customUser class {} " , customUser.getClass());
-        return "Jesteś zalogowany jako " + customUser;
-    }
+
 }
 
 

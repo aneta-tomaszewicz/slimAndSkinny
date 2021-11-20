@@ -9,4 +9,4 @@ Pomożemy Ci schudnąć, przytyć albo po prostu zacząć zdrowo się odżywiać
 Pierwszym krokiem jest rejestracja <br>
 <a href="/user/form/add">Zarejestruj się</a><br>
 Jesli masz już konto zaloguj się. <br>
-<a href="/user/form/login">Zaloguj</a><br>
+<a href="/login">Zaloguj</a><br>

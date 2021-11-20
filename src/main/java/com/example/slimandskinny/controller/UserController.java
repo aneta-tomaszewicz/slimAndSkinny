@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@RequestMapping("/user/form")
 public class UserController {
     private final UserService userService;
 
@@ -34,6 +35,19 @@ public class UserController {
         User entityUser = customUser.getUser();
         return "Witaj " + entityUser.getFirstName();
     }
+
+    @GetMapping("/add")
+    public String addUser(Model model) {
+        model.addAttribute("user", new User());
+        return "user/userForm";
+    }
+
+    @PostMapping("/add")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "/user/userAccountCreated";
+    }
+
 
 
 
