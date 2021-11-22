@@ -1,4 +1,4 @@
-package com.example.slimandskinny.service;
+/*package com.example.slimandskinny.service;
 
 import com.example.slimandskinny.entity.Role;
 import com.example.slimandskinny.entity.User;
@@ -38,4 +38,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
     }
-}
+}*/

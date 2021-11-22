@@ -5,6 +5,6 @@
 
 Konto zostało założone.
 Przejdż do strony logowania.
-<a href="/user/form/login">Zaloguj</a>
+<a href="/login">Zaloguj</a>
 
 

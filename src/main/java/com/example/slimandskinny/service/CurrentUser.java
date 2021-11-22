@@ -1,3 +1,4 @@
+/*
 package com.example.slimandskinny.service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,3 +16,4 @@ public class CurrentUser extends User {
 
     public com.example.slimandskinny.entity.User getUser() {return user;}
 }
+*/

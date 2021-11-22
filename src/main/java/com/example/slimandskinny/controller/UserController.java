@@ -1,25 +1,34 @@
 package com.example.slimandskinny.controller;
 import com.example.slimandskinny.entity.User;
-import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserRepository;
-import com.example.slimandskinny.service.CurrentUser;
-import com.example.slimandskinny.service.UserService;
+//import com.example.slimandskinny.service.CurrentUser;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@RequestMapping("/user/form")
+/*@RequestMapping("/user/form")*/
 public class UserController {
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = bCryptPasswordEncoder;
     }
-    @GetMapping("/create-user")
+
+
+
+/*    @GetMapping("/create-user")
     @ResponseBody
     public String createUser() {
         User user = new User();
@@ -27,25 +36,40 @@ public class UserController {
         user.setPassword("admin");
         userService.saveUser(user);
         return "admin";
-    }
+    }*/
 
-    @GetMapping("/admin")
+/*    @GetMapping("/admin")
     @ResponseBody
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
         return "Witaj " + entityUser.getFirstName();
-    }
+    }*/
 
-    @GetMapping("/add")
+    @GetMapping("/register")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
-        return "user/userForm";
+        return "user/register";
     }
 
-    @PostMapping("/add")
-    public String saveUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute User user) {
+       user.setPassword(passwordEncoder.encode(user.getPassword()));
+       userRepository.save(user);
         return "/user/userAccountCreated";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "/user/login";
+    }
+
+    @GetMapping("/logout")
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "user/logoutInformation";
     }
 
 

@@ -12,25 +12,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password(passwordEncoder().encode("user123")).roles("USER")
-                .and()
-                .withUser("admin1").password("{noop}admin123").roles("ADMIN");
+        auth.userDetailsService(springDataUserDetailsService())
+                .passwordEncoder(passwordEncoder());
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAnyRole("USER","ADMIN")
-                .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+                /*.antMatchers("/user/**").authenticated()*/
+                .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login")
                 .and().logout().logoutSuccessUrl("/user/logoutInformation")
-                .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/user/403");
+        http.csrf().disable();
     }
 
     @Bean
@@ -39,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public SpringDataUserDetailsService customUserDetailsService() {
+    public SpringDataUserDetailsService springDataUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
 

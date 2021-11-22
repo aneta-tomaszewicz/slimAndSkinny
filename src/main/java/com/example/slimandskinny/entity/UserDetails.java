@@ -85,16 +85,7 @@ public class UserDetails {
         this.purpose = purpose;
     }
 
-    public Map<Double, String> getMap() {
-        Map<Double, String> physicalActivity = new HashMap<>();
-        physicalActivity.put(1.2, "Extremely inactive");
-        physicalActivity.put(1.3, "Sedentary");
-        physicalActivity.put(1.5, "Moderately active");
-        physicalActivity.put(1.7, "Vigorously active");
-        physicalActivity.put(2.0, "Extremely active");
-        return physicalActivity;
 
-    }
 }
 
 
