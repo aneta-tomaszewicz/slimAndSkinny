@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                /*.antMatchers("/user/**").authenticated()*/
+                .antMatchers("/home/**").authenticated()
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login")
                 .and().logout().logoutSuccessUrl("/user/logoutInformation")
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public SpringDataUserDetailsService springDataUserDetailsService() {
+    public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
 

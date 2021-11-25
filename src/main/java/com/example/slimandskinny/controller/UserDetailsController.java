@@ -4,6 +4,8 @@ import com.example.slimandskinny.entity.User;
 import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,8 @@ public class UserDetailsController {
     @ResponseBody
     public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
         UserDetails userDetails = new UserDetails();
+       /* Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();*/
         userDetails.setAge(age);
         userDetails.setWeight(weight);
         userDetails.setHeight(height);
@@ -38,7 +42,7 @@ public class UserDetailsController {
         userDetails.setActivity(activity);
         userDetails.setPurpose(purpose);
         userDetailsRepository.save(userDetails);
-        return "/caloricDemand";
+        return "redirect:/caloricDemand";
     }
 
     @GetMapping("/caloricDemand")
@@ -47,16 +51,16 @@ public class UserDetailsController {
        // User user = new User();
         double caloricDemand;
         UserDetails userDetails = new UserDetails();
-        return "zapotrzebiwanie" +userDetails.getUser();
-    }
+     /*   return "zapotrzebiwanie" +userDetails.getUser();*/
 
-/*        if (userDetails.getGender()==655){
+
+        if (userDetails.getGender()==655){
             caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
         return  "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
         caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
         return "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
-    }*/
+    }
 
     /*@MOdelAtrtribute do kalkulatora
     @PostMapping("/calculator")
