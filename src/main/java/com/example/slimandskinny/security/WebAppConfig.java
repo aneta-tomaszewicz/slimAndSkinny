@@ -1,3 +1,4 @@
+/*
 package com.example.slimandskinny.security;
 
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +10,9 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("user/home");
-        registry.addViewController("/403").setViewName("403");
+        registry.addViewController("/login").setViewName("jsp/user/home");
+        registry.addViewController("/403").setViewName("/403");
     }
 
 }
+*/

@@ -1,7 +1,5 @@
 package com.example.slimandskinny.service;
 
-
-
 import org.springframework.security.core.userdetails.*;
 import com.example.slimandskinny.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +29,10 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(email);
         }
-       GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole());
+       GrantedAuthority authorities = new SimpleGrantedAuthority(user.getRole());
         /*return new User(user.getEmail(), user.getPassword(), Collections.emptyList());*/
-        return CurrentUser(user.getEmail(),user.getPassword(),
-                grantedAuthorities, user);
+        return new CurrentUser(user.getEmail(),user.getPassword(),
+                Collections.singleton(authorities), user);
 
 
     }

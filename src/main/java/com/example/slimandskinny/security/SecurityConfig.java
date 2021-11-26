@@ -16,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(springDataUserDetailsService())
+        auth.userDetailsService(customUserDetailsService())
                 .passwordEncoder(passwordEncoder());
     }
     @Override

@@ -78,12 +78,12 @@ public class UserController {
         return "user/logoutInformation";
     }
 
-    @GetMapping("/currentUser")
+ /*   @GetMapping("/currentUser")
     @ResponseBody
     public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
         log.info("customUser class {} ", customUser.getClass());
         return "You are logged as " + customUser;
-    }
+    }*/
     @GetMapping("/admin")
     @ResponseBody
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {

@@ -1,11 +1,15 @@
 package com.example.slimandskinny.service;
+import com.example.slimandskinny.entity.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-public class CurrentUser extends User {
-    private final com.example.slimandskinny.entity.User user;
+public class CurrentUser extends org.springframework.security.core.userdetails.User {
+    private final User user;
+
+    /*public CurrentUser(String email, String password, GrantedAuthority authorities, User user) {
+        this.user = user;
+    }*/
     public CurrentUser(String email, String password,
                        Collection<? extends GrantedAuthority> authorities,
                        com.example.slimandskinny.entity.User user) {
@@ -13,5 +17,6 @@ public class CurrentUser extends User {
         this.user = user;
     }
 
-    public com.example.slimandskinny.entity.User getUser() {return user;}
+    public com.example.slimandskinny.entity.User getUser() {
+        return user;}
 }

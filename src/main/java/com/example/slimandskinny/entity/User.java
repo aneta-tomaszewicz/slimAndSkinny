@@ -29,7 +29,7 @@ public class User {
 
 
 
-    public User() {
+    public User(String email, String password, Collection<? extends GrantedAuthority> authorities) {
 
     }
 
@@ -40,6 +40,10 @@ public class User {
         this.firstName = firstName;
       /*  this.role = role;*/
         this.userDetails = userDetails;
+    }
+
+    public User() {
+
     }
 
     public String getRole() {
