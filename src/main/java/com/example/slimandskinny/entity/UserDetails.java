@@ -1,8 +1,6 @@
 package com.example.slimandskinny.entity;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Entity
@@ -21,7 +19,7 @@ public class UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public User getUser() {
+    public User getUser(long id) {
         return user;
     }
 
@@ -41,48 +39,55 @@ public class UserDetails {
         return age;
     }
 
-    public void setAge(int age) {
+    public UserDetails setAge(int age) {
         this.age = age;
+        return null;
+
     }
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public UserDetails setWeight(double weight) {
         this.weight = weight;
+        return null;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public UserDetails setHeight(int height) {
         this.height = height;
+        return null;
     }
 
     public int getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public UserDetails setGender(int gender) {
         this.gender = gender;
+        return null;
     }
 
     public double getActivity() {
         return activity;
     }
 
-    public void setActivity(double activity) {
+    public UserDetails setActivity(double activity) {
         this.activity = activity;
+        return null;
     }
 
     public int getPurpose() {
         return purpose;
     }
 
-    public void setPurpose(int purpose) {
+    public UserDetails setPurpose(int purpose) {
         this.purpose = purpose;
+        return null;
     }
 
 

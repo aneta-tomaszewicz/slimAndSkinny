@@ -4,7 +4,9 @@ import com.example.slimandskinny.entity.User;
 import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
+import com.example.slimandskinny.service.CurrentUser;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,17 +34,28 @@ public class UserDetailsController {
     @PostMapping("/calculator")
     @ResponseBody
     public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
+        User user = new User();
         UserDetails userDetails = new UserDetails();
+        user.setUserDetails(userDetails.setAge(age));
+        user.setUserDetails(userDetails.setWeight(weight));
+        user.setUserDetails(userDetails.setHeight(height));
+        user.setUserDetails(userDetails.setGender(gender));
+        user.setUserDetails(userDetails.setActivity(activity));
+        user.setUserDetails(userDetails.setPurpose(purpose));
+
+        /*User user = new User();*/
        /* Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();*/
-        userDetails.setAge(age);
+       /* userDetails.setId(user.getId());*/
+      /*  User entityUser = customUser.getUser();*/
+      /*  userDetails.setAge(age);
         userDetails.setWeight(weight);
         userDetails.setHeight(height);
         userDetails.setGender(gender);
         userDetails.setActivity(activity);
         userDetails.setPurpose(purpose);
-        userDetailsRepository.save(userDetails);
-        return "redirect:/caloricDemand";
+        userDetailsRepository.save(userDetails);*/
+        return "/caloricDemand";
     }
 
     @GetMapping("/caloricDemand")
@@ -56,10 +69,10 @@ public class UserDetailsController {
 
         if (userDetails.getGender()==655){
             caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
-        return  "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+        return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
         caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
-        return "Zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
 
     /*@MOdelAtrtribute do kalkulatora

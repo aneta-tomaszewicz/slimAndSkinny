@@ -68,6 +68,12 @@ public class UserController {
     public String login() {
         return "/user/login";
     }
+    @PostMapping("/login")
+
+    public String loged() {
+        return "/user/home";
+    }
+
 
     @GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
@@ -84,11 +90,11 @@ public class UserController {
         log.info("customUser class {} ", customUser.getClass());
         return "You are logged as " + customUser;
     }*/
-    @GetMapping("/admin")
+    @GetMapping("/user")
     @ResponseBody
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
-        return "Hello " + entityUser.getFirstName();
+        return "Witaj " + entityUser.getFirstName();
     }
 }
 
