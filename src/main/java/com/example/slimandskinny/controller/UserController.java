@@ -69,13 +69,16 @@ public class UserController {
         return "/user/login";
     }
     @PostMapping("/login")
-
-    public String loged() {
+    public String logIn() {
         return "/user/home";
     }
 
-
     @GetMapping("/logout")
+    public String logout(){
+        return "/user/logout";
+    }
+
+    @PostMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {

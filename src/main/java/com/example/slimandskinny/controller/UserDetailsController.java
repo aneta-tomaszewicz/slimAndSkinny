@@ -5,6 +5,7 @@ import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import com.example.slimandskinny.service.CurrentUser;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,9 +33,21 @@ public class UserDetailsController {
     }
 
     @PostMapping("/calculator")
+ /*   @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)*/
     @ResponseBody
     public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
-        User user = new User();
+        UserDetails userDetails = new UserDetails();
+        /*getUser().getId(long);*/
+        userDetails.setAge(age);
+        userDetails.setWeight(weight);
+        userDetails.setHeight(height);
+        userDetails.setGender(gender);
+        userDetails.setActivity(activity);
+        userDetails.setPurpose(purpose);
+        userDetailsRepository.save(userDetails);
+        return "redirect:/caloricDemand";
+
+        /*   User user = new User();
         UserDetails userDetails = new UserDetails();
         user.setUserDetails(userDetails.setAge(age));
         user.setUserDetails(userDetails.setWeight(weight));
@@ -42,7 +55,7 @@ public class UserDetailsController {
         user.setUserDetails(userDetails.setGender(gender));
         user.setUserDetails(userDetails.setActivity(activity));
         user.setUserDetails(userDetails.setPurpose(purpose));
-
+*/
         /*User user = new User();*/
        /* Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();*/
@@ -55,8 +68,10 @@ public class UserDetailsController {
         userDetails.setActivity(activity);
         userDetails.setPurpose(purpose);
         userDetailsRepository.save(userDetails);*/
-        return "/caloricDemand";
+       /* return "/caloricDemand";*/
     }
+
+
 
     @GetMapping("/caloricDemand")
     @ResponseBody
