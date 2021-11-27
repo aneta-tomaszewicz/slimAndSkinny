@@ -7,9 +7,7 @@ import java.util.Collection;
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
     private final User user;
 
-    /*public CurrentUser(String email, String password, GrantedAuthority authorities, User user) {
-        this.user = user;
-    }*/
+
     public CurrentUser(String email, String password,
                        Collection<? extends GrantedAuthority> authorities,
                        com.example.slimandskinny.entity.User user) {

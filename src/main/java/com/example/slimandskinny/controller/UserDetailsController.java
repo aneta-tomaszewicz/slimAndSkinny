@@ -34,10 +34,11 @@ public class UserDetailsController {
 
     @PostMapping("/calculator")
  /*   @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)*/
-    @ResponseBody
     public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
         UserDetails userDetails = new UserDetails();
-        /*getUser().getId(long);*/
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user =((CurrentUser)auth.getPrincipal()).getUser();
+        userDetails.setUser(user);
         userDetails.setAge(age);
         userDetails.setWeight(weight);
         userDetails.setHeight(height);

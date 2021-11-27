@@ -44,7 +44,7 @@ public class UserController {
         return "admin";
     }*/
 
-/*    @GetMapping("/admin")
+    /*@GetMapping("/hello")
     @ResponseBody
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
@@ -93,9 +93,9 @@ public class UserController {
         log.info("customUser class {} ", customUser.getClass());
         return "You are logged as " + customUser;
     }*/
-    @GetMapping("/user")
+    @GetMapping("/hello")
     @ResponseBody
-    public String admin(@AuthenticationPrincipal CurrentUser customUser) {
+    public String hello(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
         return "Witaj " + entityUser.getFirstName();
     }
