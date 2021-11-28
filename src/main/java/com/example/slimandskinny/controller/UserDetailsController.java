@@ -5,25 +5,22 @@ import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import com.example.slimandskinny.service.CurrentUser;
-import org.springframework.http.HttpStatus;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class UserDetailsController {
 
     private final UserDetailsRepository userDetailsRepository;
+    private final UserRepository userRepository;
 
 
-    public UserDetailsController(UserDetailsRepository userDetailsRepository) {
+    public UserDetailsController(UserDetailsRepository userDetailsRepository, UserRepository userRepository) {
         this.userDetailsRepository = userDetailsRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/calculator")
@@ -38,6 +35,7 @@ public class UserDetailsController {
         UserDetails userDetails = new UserDetails();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
+        user = userRepository.getById(user.getId());
         userDetails.setUser(user);
         userDetails.setAge(age);
         userDetails.setWeight(weight);
@@ -79,9 +77,12 @@ public class UserDetailsController {
     public String calculateCalories() {
        // User user = new User();
         double caloricDemand;
-        UserDetails userDetails = new UserDetails();
-     /*   return "zapotrzebiwanie" +userDetails.getUser();*/
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user =((CurrentUser)auth.getPrincipal()).getUser();
+        User user1 = userRepository.getById(user.getId());
 
+     /*   return "zapotrzebiwanie" +userDetails.getUser();*/
+        UserDetails userDetails = user1.getUserDetails();
 
         if (userDetails.getGender()==655){
             caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();

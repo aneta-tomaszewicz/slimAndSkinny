@@ -5,7 +5,7 @@
 
 <form method="post">
 
-    Login(email):<input name="email" placeholder="Podaj adres email"/><br>
+    Login(email):<input name="username" placeholder="Podaj adres email"/><br>
     Hasło:<input name="password" type="password" placeholder="Podaj hasło"/><br>
 
     <input type="submit" value="Zaloguj"/>

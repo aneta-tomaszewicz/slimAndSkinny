@@ -68,10 +68,7 @@ public class UserController {
     public String login() {
         return "/user/login";
     }
-    @PostMapping("/login")
-    public String logIn() {
-        return "/user/home";
-    }
+
 
     @GetMapping("/logout")
     public String logout(){
@@ -86,19 +83,19 @@ public class UserController {
         }
         return "user/logoutInformation";
     }
-
- /*   @GetMapping("/currentUser")
+/*
+  @GetMapping("/currentUser")
     @ResponseBody
     public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
         log.info("customUser class {} ", customUser.getClass());
         return "You are logged as " + customUser;
     }*/
-    @GetMapping("/hello")
+  /*  @GetMapping("/hello")
     @ResponseBody
     public String hello(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
         return "Witaj " + entityUser.getFirstName();
-    }
+    }*/
 }
 
 

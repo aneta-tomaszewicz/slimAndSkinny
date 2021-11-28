@@ -19,6 +19,7 @@ public class UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
+
     public long getId() {
         return id;
     }
