@@ -84,10 +84,10 @@ public class UserDetailsController {
         UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
 
         if (userDetails.getGender()==655){
-            caloricDemand = (655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
+            caloricDemand = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
         return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
-        caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
+        caloricDemand = (userDetails.getGender()+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
         return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
 
