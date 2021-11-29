@@ -83,19 +83,22 @@ public class UserController {
         }
         return "user/logoutInformation";
     }
-/*
-  @GetMapping("/currentUser")
+ /* @GetMapping("/currentUser")
     @ResponseBody
     public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
-        log.info("customUser class {} ", customUser.getClass());
+        logger.info("customUser class {} ", customUser.getClass());
         return "You are logged as " + customUser;
     }*/
-  /*  @GetMapping("/hello")
+    @GetMapping("/hello")
     @ResponseBody
     public String hello(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
         return "Witaj " + entityUser.getFirstName();
-    }*/
+    }
+    @GetMapping("/home")
+    public String goHome() {
+        return "/user/home";
+    }
 }
 
 
@@ -118,45 +121,7 @@ public class UserController {
     public String findAllUsers(Model model){
         model.addAttribute("users", userRepository.findAll());
         return "/user/listOfUsers";
-    }*//*
-
-    @GetMapping("/add")
-    public String addUser(Model model) {
-        model.addAttribute("user", new User());
-        return "user/userForm";
-    }
-
-    @PostMapping("/add")
-    public String saveUser(@ModelAttribute("user") User user) {
-*//*        List<User> user1 = userRepository.findUserByEmail(user.getEmail());
-
-        if (!user1.isEmpty()) {
-            return "Podany adres email jest już w naszej bazie. Przejdz do logowania ";
-
-        } else {*//*
-
-        userRepository.save(user);
-        return "/user/userAccountCreated";
-
-    }
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new User());
-        return "/user/login";
-    }
-
-    @PostMapping("/login")
-
-    public String logIn(@RequestParam String email, @RequestParam String password){
-        User user = userRepository.findUserByEmailAndAndPassword(email, password);
-        if ((user.getEmail().equals(email)) && (user.getPassword().equals(password))){
-
-        return "/user/home";
-        }
-        return "/user/login";
-    }
-
-*/
+    }*/
 
 
 

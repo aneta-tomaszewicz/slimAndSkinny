@@ -22,9 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/calculator/**").authenticated()
+                .antMatchers("/calculator/**", "/home").authenticated()
                 .antMatchers("/").permitAll()
-                .and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
                 .and().logout().logoutSuccessUrl("/user/logoutInformation")
                 .and().exceptionHandling().accessDeniedPage("/user/403");
         http.csrf().disable();
