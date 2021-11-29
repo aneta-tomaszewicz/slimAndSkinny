@@ -75,7 +75,11 @@ public class UserDetailsController {
     @GetMapping("/caloricDemand")
     @ResponseBody
     public String calculateCalories() {
-        double caloricDemand;
+
+        double caloricDemandFormula;
+        int caloricDemandF;
+        int caloricDemandM;
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
@@ -84,11 +88,18 @@ public class UserDetailsController {
         UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
 
         if (userDetails.getGender()==655){
-            caloricDemand = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
-        return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+            caloricDemandFormula = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
+            caloricDemandF = Math.toIntExact(Math.round(caloricDemandFormula));
+            userDetails.setCaloriesDemand(caloricDemandF);
+            userDetailsRepository.save(userDetails);
+
+            return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemandF;
     }
-        caloricDemand = (userDetails.getGender()+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
-        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+        caloricDemandFormula = (userDetails.getGender()+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
+        caloricDemandM = Math.toIntExact(Math.round(caloricDemandFormula));
+        userDetails.setCaloriesDemand(caloricDemandM);
+        userDetailsRepository.save(userDetails);
+        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemandM;
     }
 
     /*@MOdelAtrtribute do kalkulatora

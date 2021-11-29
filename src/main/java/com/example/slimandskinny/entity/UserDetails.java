@@ -15,10 +15,18 @@ public class UserDetails {
     private int gender;
     private double activity;
     private int purpose;
+    private int caloriesDemand;
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
+    public int getCaloriesDemand() {
+        return caloriesDemand;
+    }
+
+    public void setCaloriesDemand(int caloriesDemand) {
+        this.caloriesDemand = caloriesDemand;
+    }
 
     public long getId() {
         return id;

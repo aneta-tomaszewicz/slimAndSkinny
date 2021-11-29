@@ -5,7 +5,7 @@
 
 
 <sec:authorize access="isAuthenticated()">
-  <p><h2>Witaj,</h2> <sec:authentication property="principal.username"/> </p>
+ <h2>Witaj  <sec:authentication property="principal.username"/></h2> <br>
 
 </sec:authorize>
 
@@ -18,6 +18,6 @@
 --%>
 
 
-
+<a href="/caloricDemand">Dzienne zapotrzebowanie kaloryczne </a><br>
 <a href="/calculator">Kalkulator zapotrzebowania kalorycznego </a><br>
 <a href="/logout">Wyloguj</a>
