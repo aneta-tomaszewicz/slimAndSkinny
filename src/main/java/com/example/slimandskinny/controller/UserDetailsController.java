@@ -75,17 +75,16 @@ public class UserDetailsController {
     @GetMapping("/caloricDemand")
     @ResponseBody
     public String calculateCalories() {
-       // User user = new User();
         double caloricDemand;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
 
-     /*   return "zapotrzebiwanie" +userDetails.getUser();*/
-        UserDetails userDetails = user1.getUserDetails();
+        /*UserDetails userDetails = user.getUserDetails();*/
+        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
 
         if (userDetails.getGender()==655){
-            caloricDemand = 655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
+            caloricDemand = (655+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
         return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
         caloricDemand =66+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge())+userDetails.getPurpose();
