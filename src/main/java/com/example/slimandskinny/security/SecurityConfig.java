@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/calculator/**", "/home").authenticated()
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
-                .and().logout().logoutSuccessUrl("/logout").permitAll()
+                .and().logout().logoutSuccessUrl("/login").permitAll()
                 .and().exceptionHandling().accessDeniedPage("/user/403");
         http.csrf().disable();
     }

@@ -30,7 +30,7 @@ public class UserDetailsController {
     }
 
     @PostMapping("/calculator")
- /*   @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)*/
+
     public String calculateCalories(@RequestParam int gender, @RequestParam int age, @RequestParam double weight, @RequestParam int height, @RequestParam double activity, @RequestParam int purpose){
         UserDetails userDetails = new UserDetails();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -20,4 +20,5 @@
 
 <a href="/caloricDemand">Dzienne zapotrzebowanie kaloryczne </a><br>
 <a href="/calculator">Kalkulator zapotrzebowania kalorycznego </a><br>
+<a href="/eatenCalories">Dodaj spożyte kalorie </a><br>
 <a href="/logout">Wyloguj</a>

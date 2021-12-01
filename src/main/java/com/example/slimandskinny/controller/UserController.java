@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Logger;
@@ -64,25 +66,6 @@ public class UserController {
         return "/user/userAccountCreated";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "/user/login";
-    }
-
-
-    @GetMapping("/logout")
-    public String logout(){
-        return "/user/logout";
-    }
-
-    @PostMapping("/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "user/logoutInformation";
-    }
  /* @GetMapping("/currentUser")
     @ResponseBody
     public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
