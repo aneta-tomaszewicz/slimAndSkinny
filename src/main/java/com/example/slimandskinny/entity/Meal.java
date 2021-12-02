@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -25,6 +27,9 @@ public class Meal {
     private Integer lunch= 0;
     private Integer tea= 0;
     private Integer supper= 0;
+
+    @ManyToOne
+    private User user;
 
 
 }

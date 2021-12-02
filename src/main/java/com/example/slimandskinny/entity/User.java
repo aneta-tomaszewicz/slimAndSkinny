@@ -3,7 +3,9 @@ package com.example.slimandskinny.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,6 +28,10 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     private UserDetails userDetails;
+
+
+    @ManyToMany
+    private List<Meal> meals = new ArrayList<>();
 
 
 
