@@ -33,22 +33,15 @@ public class EatenCaloriesController {
     }
 
     @PostMapping("/eatenCalories")
-    public String saveDateAndBreakfast (@RequestParam (required = false)  String date,@RequestParam (required = false) Integer breakfast){
-       Meal meal = new Meal();
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user =((CurrentUser)auth.getPrincipal()).getUser();
-        User user1 = userRepository.getById(user.getId());
-
-        *//*UserDetails userDetails = user.getUserDetails();*//*
-        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());*/
-
+    public String saveDateAndBreakfast (@ModelAttribute("meals") Meal meal){
+      /* Meal meal = new Meal();*/
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         meal.setUser(user);
-        meal.setDate(date);
+    /*    meal.setDate(date);
         meal.setBreakfast(breakfast);
-        mealRepository.save(meal);
+        mealRepository.save(meal);*/
         return "/eatenCalories/breakfast";
     }
 

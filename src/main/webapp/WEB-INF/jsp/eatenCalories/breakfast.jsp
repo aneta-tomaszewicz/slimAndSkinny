@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
+<%--
 <c:forEach items="${meals}" var="m">
 <strong><c:out value="${m.date}: ${m.breakfast}"/></strong><br>
 </c:forEach>
 <c:out value="${user.date} ${user.brekfast} (${student.gender})"/><br>
 ${date}
-${breakfast}
+${breakfast}--%>
     Drugie śniadanie:<input type="number" name ="elevenses" placeholder="ilość kalorii">
     <input type="submit" value ="Zapisz"><br></form>
 <form method="post">
