@@ -1,8 +1,16 @@
 package com.example.slimandskinny.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 @Entity
 public class UserDetails {
 
@@ -20,152 +28,4 @@ public class UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public int getCaloriesDemand() {
-        return caloriesDemand;
-    }
-
-    public void setCaloriesDemand(int caloriesDemand) {
-        this.caloriesDemand = caloriesDemand;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public double getActivity() {
-        return activity;
-    }
-
-    public void setActivity(double activity) {
-        this.activity = activity;
-    }
-
-    public int getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(int purpose) {
-        this.purpose = purpose;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    /* public User getUser(long id) {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public UserDetails setAge(int age) {
-        this.age = age;
-        return null;
-
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public UserDetails setWeight(double weight) {
-        this.weight = weight;
-        return null;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public UserDetails setHeight(int height) {
-        this.height = height;
-        return null;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public UserDetails setGender(int gender) {
-        this.gender = gender;
-        return null;
-    }
-
-    public double getActivity() {
-        return activity;
-    }
-
-    public UserDetails setActivity(double activity) {
-        this.activity = activity;
-        return null;
-    }
-
-    public int getPurpose() {
-        return purpose;
-    }
-
-    public UserDetails setPurpose(int purpose) {
-        this.purpose = purpose;
-        return null;
-    }
-
-*/
 }
-
-
-
-

@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 @Controller
 public class UserDetailsController {
 
@@ -46,60 +47,34 @@ public class UserDetailsController {
         userDetailsRepository.save(userDetails);
         return "redirect:/caloricDemand";
 
-        /*   User user = new User();
-        UserDetails userDetails = new UserDetails();
-        user.setUserDetails(userDetails.setAge(age));
-        user.setUserDetails(userDetails.setWeight(weight));
-        user.setUserDetails(userDetails.setHeight(height));
-        user.setUserDetails(userDetails.setGender(gender));
-        user.setUserDetails(userDetails.setActivity(activity));
-        user.setUserDetails(userDetails.setPurpose(purpose));
-*/
-        /*User user = new User();*/
-       /* Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();*/
-       /* userDetails.setId(user.getId());*/
-      /*  User entityUser = customUser.getUser();*/
-      /*  userDetails.setAge(age);
-        userDetails.setWeight(weight);
-        userDetails.setHeight(height);
-        userDetails.setGender(gender);
-        userDetails.setActivity(activity);
-        userDetails.setPurpose(purpose);
-        userDetailsRepository.save(userDetails);*/
-       /* return "/caloricDemand";*/
     }
-
-
 
     @GetMapping("/caloricDemand")
     @ResponseBody
     public String calculateCalories() {
 
         double caloricDemandFormula;
-        int caloricDemandF;
-        int caloricDemandM;
+        int caloricDemand;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
 
-        /*UserDetails userDetails = user.getUserDetails();*/
         UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
 
         if (userDetails.getGender()==655){
             caloricDemandFormula = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
-            caloricDemandF = Math.toIntExact(Math.round(caloricDemandFormula));
-            userDetails.setCaloriesDemand(caloricDemandF);
+            caloricDemand = Math.toIntExact(Math.round(caloricDemandFormula));
+            userDetails.setCaloriesDemand(caloricDemand);
             userDetailsRepository.save(userDetails);
 
-            return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemandF;
+            return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
         caloricDemandFormula = (userDetails.getGender()+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
-        caloricDemandM = Math.toIntExact(Math.round(caloricDemandFormula));
-        userDetails.setCaloriesDemand(caloricDemandM);
+        caloricDemand = Math.toIntExact(Math.round(caloricDemandFormula));
+        userDetails.setCaloriesDemand(caloricDemand);
         userDetailsRepository.save(userDetails);
-        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemandM;
+        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
     }
 
     /*@MOdelAtrtribute do kalkulatora
