@@ -2,10 +2,14 @@ package com.example.slimandskinny.controller;
 
 import com.example.slimandskinny.entity.Meal;
 import com.example.slimandskinny.entity.User;
+import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.MealRepository;
+import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import com.example.slimandskinny.service.CurrentUser;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.apache.catalina.LifecycleState;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 
 @Controller
 @AllArgsConstructor
@@ -23,6 +29,9 @@ public class MealController {
 
     private final MealRepository mealRepository;
     private final UserRepository userRepository;
+   /* private final UserDetails userDetails;*/
+    // private final Meal meal;
+
 
     @GetMapping("/add")
     public String addEatenCalories(Model model) {
@@ -31,19 +40,26 @@ public class MealController {
     }
 
     @PostMapping("/add")
-    public String saveDateAndMeals (@ModelAttribute("meal") Meal meal){
+    public String saveDateAndMeals(@ModelAttribute("meal") Meal meal) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user =((CurrentUser)auth.getPrincipal()).getUser();
+        User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         meal.setUser(user);
+       // sumDayCalories();
         mealRepository.save(meal);
-        return "/calories/caloriesList";
+        return "redirect:/all";
     }
 
 
     @GetMapping("/all")
     public String showAllCalories(Model model) {
+        Meal meal = new Meal();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = ((CurrentUser) auth.getPrincipal()).getUser();
+        user = userRepository.getById(user.getId());
+        meal.setUser(user);
+        List<Meal> allCalories = mealRepository.findAll();
         model.addAttribute("meal", mealRepository.findAll());
         return "/calories/caloriesList";
 
@@ -58,7 +74,12 @@ public class MealController {
 
 
     @PostMapping("/edit")
-    public String merge(@ModelAttribute("meal") Meal meal) {
+    public String merge(@ModelAttribute("meal") Meal meal, long idToEdit) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = ((CurrentUser) auth.getPrincipal()).getUser();
+        user = userRepository.getById(user.getId());
+        meal.setUser(user);
+        //sumDayCalories();
         mealRepository.save(meal);
         return "redirect:/all";
     }
@@ -76,5 +97,25 @@ public class MealController {
         }
         return "redirect:/all";
     }
+
+/*    public String sumDayCalories() {
+        int sum;
+        int dayBalance;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = ((CurrentUser) auth.getPrincipal()).getUser();
+        User user1 = userRepository.getById(user.getId());
+        Meal meal = mealRepository.findMealByUserId(user1);
+
+        sum = meal.getBreakfast() + meal.getElevenses() + meal.getLunch() + meal.getTea() + meal.getSupper();
+        meal.setSum(sum);
+
+        *//*dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
+        meal.setDayBalance(dayBalance);*//*
+
+        return sumDayCalories();
+
+    }*/
+
+
 
 }
