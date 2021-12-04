@@ -53,7 +53,8 @@ public class MealController {
         meal.setSum(sum);
 
         User user1 = userRepository.getById(user.getId());
-        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        UserDetails userDetails = user1.getUserDetails();
+       // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
         int dayBalance;
         dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
         meal.setDayBalance(dayBalance);
@@ -66,12 +67,10 @@ public class MealController {
 
     @GetMapping("/all")
     public String showAllCalories(Model model) {
-        Meal meal = new Meal();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
-        meal.setUser(user);
-        List<Meal> allCalories = mealRepository.findAll();
+        model.addAttribute("user", user);
         model.addAttribute("meal", mealRepository.findAll());
         return "/calories/caloriesList";
 
@@ -95,7 +94,8 @@ public class MealController {
         sum = meal.getBreakfast() + meal.getElevenses() + meal.getLunch() + meal.getTea() + meal.getSupper();
         meal.setSum(sum);
         User user1 = userRepository.getById(user.getId());
-        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        UserDetails userDetails = user1.getUserDetails();
+       // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
         int dayBalance;
         dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
         meal.setDayBalance(dayBalance);
@@ -108,7 +108,7 @@ public class MealController {
 
     @GetMapping("/remove")
     public String prepareRemove(@RequestParam long idToRemove, Model model) {
-        model.addAttribute("book", mealRepository.findById(idToRemove));
+        model.addAttribute("meal", mealRepository.getById(idToRemove));
         return "calories/remove";
     }
 

@@ -27,6 +27,7 @@ public class User {
     private String role = "user";
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="userDetailsId")
     private UserDetails userDetails;
 
 

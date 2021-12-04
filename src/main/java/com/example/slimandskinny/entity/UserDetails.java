@@ -25,7 +25,7 @@ public class UserDetails {
     private int purpose;
     private int caloriesDemand;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+   /* @OneToOne(cascade = CascadeType.ALL)
+    private User user;*/
 
 }

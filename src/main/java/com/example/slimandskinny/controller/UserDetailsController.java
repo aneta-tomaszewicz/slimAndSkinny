@@ -37,7 +37,7 @@ public class UserDetailsController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
-        userDetails.setUser(user);
+       /* userDetails.setUser(user);*/
         userDetails.setAge(age);
         userDetails.setWeight(weight);
         userDetails.setHeight(height);
@@ -60,7 +60,8 @@ public class UserDetailsController {
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
 
-        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        UserDetails userDetails = user1.getUserDetails();
+      //  UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
 
         if (userDetails.getGender()==655){
             caloricDemandFormula = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();

@@ -22,8 +22,10 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+
     <c:forEach items="${meal}" var="meal">
+
+<tr>
         <td><strong><c:out value="${meal.date}"/></strong></td>
         <td><c:out value="${meal.breakfast}"/></td>
         <td><c:out value="${meal.elevenses}"/></td>
@@ -31,7 +33,7 @@
         <td><c:out value="${meal.tea}"/></td>
         <td><c:out value="${meal.supper}"/></td>
         <td><c:out value="${meal.sum}"/></td>
-        <td><c:out value="${meal.mealDemand}"/></td>
+        <td><c:out value="${user.userDetails.caloriesDemand}"/></td>
         <td><c:out value="${meal.dayBalance}"/></td>
         <td><a href="edit?idToEdit=${meal.id}">Edytuj </a><br>
         <a href="remove?idToRemove=${meal.id}">Usuń </a></td>
@@ -39,6 +41,7 @@
         </tr>
 
 </c:forEach>
+
         </table>
 
 
