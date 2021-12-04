@@ -29,6 +29,7 @@ public class MealController {
 
     private final MealRepository mealRepository;
     private final UserRepository userRepository;
+    private final UserDetailsRepository userDetailsRepository;
    /* private final UserDetails userDetails;*/
     // private final Meal meal;
 
@@ -46,7 +47,16 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         meal.setUser(user);
-       // sumDayCalories();
+        int sum;
+        sum = meal.getBreakfast() + meal.getElevenses() + meal.getLunch() + meal.getTea() + meal.getSupper();
+        meal.setSum(sum);
+
+        User user1 = userRepository.getById(user.getId());
+        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        int dayBalance;
+        dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
+        meal.setDayBalance(dayBalance);
+
         mealRepository.save(meal);
         return "redirect:/all";
     }
@@ -79,7 +89,16 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         meal.setUser(user);
-        //sumDayCalories();
+        int sum;
+        sum = meal.getBreakfast() + meal.getElevenses() + meal.getLunch() + meal.getTea() + meal.getSupper();
+        meal.setSum(sum);
+        User user1 = userRepository.getById(user.getId());
+        UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        int dayBalance;
+        dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
+        meal.setDayBalance(dayBalance);
+
+
         mealRepository.save(meal);
         return "redirect:/all";
     }
@@ -98,23 +117,7 @@ public class MealController {
         return "redirect:/all";
     }
 
-/*    public String sumDayCalories() {
-        int sum;
-        int dayBalance;
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = ((CurrentUser) auth.getPrincipal()).getUser();
-        User user1 = userRepository.getById(user.getId());
-        Meal meal = mealRepository.findMealByUserId(user1);
 
-        sum = meal.getBreakfast() + meal.getElevenses() + meal.getLunch() + meal.getTea() + meal.getSupper();
-        meal.setSum(sum);
-
-        *//*dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
-        meal.setDayBalance(dayBalance);*//*
-
-        return sumDayCalories();
-
-    }*/
 
 
 
