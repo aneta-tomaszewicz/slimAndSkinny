@@ -16,6 +16,7 @@
     <th>Podwieczorek:</th>
     <th>Kolacja:</th>
     <th>Podsumowanie:</th>
+    <th>Dzienne zapotrzebowanie:</th>
     <th>Bilans:</th>
     <th>Akcja:</th>
 </tr>
@@ -30,6 +31,7 @@
         <td><c:out value="${meal.tea}"/></td>
         <td><c:out value="${meal.supper}"/></td>
         <td><c:out value="${meal.sum}"/></td>
+        <td><c:out value="${meal.mealDemand}"/></td>
         <td><c:out value="${meal.dayBalance}"/></td>
         <td><a href="edit?idToEdit=${meal.id}">Edytuj </a><br>
         <a href="remove?idToRemove=${meal.id}">Usuń </a></td>
@@ -39,21 +41,7 @@
 </c:forEach>
         </table>
 
-<%--<a href="/add">Dodaj kalorie</a>
-<hr>
-<c:forEach items="${meal}" var="meal"><br>
-    <strong><c:out value="${meal.date}"/></strong><br>
-    <c:out value="${meal.breakfast}"/>
-    <c:out value="${meal.elevenses}"/>
-    <c:out value="${meal.lunch}"/>
-    <c:out value="${meal.tea}"/>
-    <c:out value="${meal.supper}"/>
 
-    <a href="edit?idToEdit=${meal.id}">Edytuj </a>
-    <a href="remove?idToRemove=${meal.id}">Usuń </a>
-
-    <hr>
-</c:forEach>--%>
 
 
 

@@ -26,6 +26,7 @@ public class Meal {
     private Integer supper;
     private Integer sum;
     private Integer dayBalance;
+    private Integer mealDemand;
 
     @ManyToOne
     private User user;
