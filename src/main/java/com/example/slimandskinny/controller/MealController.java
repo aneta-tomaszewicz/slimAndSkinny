@@ -58,7 +58,7 @@ public class MealController {
         int dayBalance;
         dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
         meal.setDayBalance(dayBalance);
-        meal.setMealDemand(userDetails.getCaloriesDemand());
+      //  meal.setMealDemand(userDetails.getCaloriesDemand());
 
         mealRepository.save(meal);
         return "redirect:/all";
@@ -99,7 +99,7 @@ public class MealController {
         int dayBalance;
         dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
         meal.setDayBalance(dayBalance);
-        meal.setMealDemand(userDetails.getCaloriesDemand());
+       // meal.setMealDemand(userDetails.getCaloriesDemand());
 
 
         mealRepository.save(meal);

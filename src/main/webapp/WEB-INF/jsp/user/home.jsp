@@ -9,17 +9,16 @@
 
 </sec:authorize>
 
+<c:choose>
+<c:when test="${user.userDetails.caloriesDemand == null}">
+ <a href="/calculator">Kalkulator zapotrzebowania kalorycznego </a><br>
+</c:when>
 
-<%--
-<sec:authorize access="isAuthenticated()">
-<authentication-manager>
-    <user-service id="springDataUserDetailsService"/>
-</authentication-manager>
---%>
-
-
+ <c:otherwise>
 <a href="/caloricDemand">Dzienne zapotrzebowanie kaloryczne </a><br>
 <a href="/calculator">Kalkulator zapotrzebowania kalorycznego </a><br>
 <a href="/add">Dodaj spożyte kalorie </a><br>
 <a href="/all">Podsumowanie spożytych kalorii </a><br>
 <a href="/logout">Wyloguj</a>
+ </c:otherwise>
+</c:choose>

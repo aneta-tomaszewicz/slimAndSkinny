@@ -12,15 +12,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.logging.Logger;
-
-
-
-
 
 
 @Controller
@@ -79,7 +70,11 @@ public class UserController {
         return "Witaj " + entityUser.getFirstName();
     }
     @GetMapping("/home")
-    public String goHome() {
+    public String goHome(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = ((CurrentUser) auth.getPrincipal()).getUser();
+        user = userRepository.getById(user.getId());
+        model.addAttribute("user", user);
         return "/user/home";
     }
 }
