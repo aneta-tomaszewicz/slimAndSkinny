@@ -3,6 +3,8 @@
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<a href="/logout">Wyloguj</a>
+<a href="/register">Zarejestruj się </a>
 <form method="post">
 
     Login(email):<input name="username" placeholder="Podaj adres email"/><br>

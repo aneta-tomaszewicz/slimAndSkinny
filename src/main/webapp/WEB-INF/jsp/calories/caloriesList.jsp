@@ -3,7 +3,13 @@
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
 
-<a href="/add">Dodaj kalorie</a>
+
+
+<a href="/logout">Wyloguj</a>
+<left> <a href="/add">Dodaj kalorie</a> </left>
+<center><a href="/calculator">Policz na nowo zapotrzebowanie</a> </center>
+<h3></h3><p style="text-align: right">Dzienne zapotrzebowanie kaloryczne: <c:out value="${user.userDetails.caloriesDemand}"/></p></h3>
+
 
 
 <table cellspacing="0" cellpadding="2" border="3" style="width: 100%;">

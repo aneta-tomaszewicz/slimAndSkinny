@@ -56,7 +56,7 @@ public class MealController {
         UserDetails userDetails = user1.getUserDetails();
        // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
         int dayBalance;
-        dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
+        dayBalance = meal.getSum() -userDetails.getCaloriesDemand();
         meal.setDayBalance(dayBalance);
       //  meal.setMealDemand(userDetails.getCaloriesDemand());
 
@@ -71,6 +71,7 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         model.addAttribute("user", user);
+        //model.addAttribute("meal", mealRepository.findAll());
         model.addAttribute("meal", mealRepository.findAll());
         return "/calories/caloriesList";
 
@@ -97,7 +98,7 @@ public class MealController {
         UserDetails userDetails = user1.getUserDetails();
        // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
         int dayBalance;
-        dayBalance = userDetails.getCaloriesDemand() - meal.getSum();
+        dayBalance = meal.getSum() -userDetails.getCaloriesDemand();
         meal.setDayBalance(dayBalance);
        // meal.setMealDemand(userDetails.getCaloriesDemand());
 

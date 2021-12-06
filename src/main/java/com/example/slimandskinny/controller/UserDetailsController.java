@@ -37,20 +37,23 @@ public class UserDetailsController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
-       /* userDetails.setUser(user);*/
+      // userDetails.setUser(user);
+        user.setUserDetails(userDetails);
         userDetails.setAge(age);
         userDetails.setWeight(weight);
         userDetails.setHeight(height);
         userDetails.setGender(gender);
         userDetails.setActivity(activity);
         userDetails.setPurpose(purpose);
+
         userDetailsRepository.save(userDetails);
+
         return "redirect:/caloricDemand";
 
     }
 
     @GetMapping("/caloricDemand")
-    @ResponseBody
+
     public String calculateCalories() {
 
         double caloricDemandFormula;
@@ -59,9 +62,14 @@ public class UserDetailsController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user =((CurrentUser)auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
+        //serDetails userDetails =
 
-        UserDetails userDetails = user1.getUserDetails();
-      //  UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+        //user1.setUserDetails(userDetails);
+
+      UserDetails userDetails = user1.getUserDetails();
+     //UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+
+
 
         if (userDetails.getGender()==655){
             caloricDemandFormula = (userDetails.getGender()+(9.6 * userDetails.getWeight())+(1.8*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
@@ -69,14 +77,15 @@ public class UserDetailsController {
             userDetails.setCaloriesDemand(caloricDemand);
             userDetailsRepository.save(userDetails);
 
-            return  "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+            return  "redirect:/all";
     }
         caloricDemandFormula = (userDetails.getGender()+(13.7 * userDetails.getWeight())+(5*userDetails.getHeight())-(4.7*userDetails.getAge()))*userDetails.getActivity()+userDetails.getPurpose();
         caloricDemand = Math.toIntExact(Math.round(caloricDemandFormula));
         userDetails.setCaloriesDemand(caloricDemand);
         userDetailsRepository.save(userDetails);
-        return "Dzienne zapotrzebowanie kaloryczne wynosi " + caloricDemand;
+        return "redirect:/all";
     }
+
 
     /*@MOdelAtrtribute do kalkulatora
     @PostMapping("/calculator")
