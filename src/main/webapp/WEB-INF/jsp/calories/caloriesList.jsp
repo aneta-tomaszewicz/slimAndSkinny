@@ -3,7 +3,7 @@
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
 
-
+<h1>Witaj <c:out value="${user.firstName}"/> </h1>
 
 <a href="/logout">Wyloguj</a>
 <left> <a href="/add">Dodaj kalorie</a> </left>

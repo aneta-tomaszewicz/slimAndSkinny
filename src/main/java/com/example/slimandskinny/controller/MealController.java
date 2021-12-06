@@ -10,6 +10,7 @@ import com.example.slimandskinny.service.CurrentUser;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.apache.catalina.LifecycleState;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -71,12 +72,14 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         model.addAttribute("user", user);
-        //model.addAttribute("meal", mealRepository.findAll());
-        model.addAttribute("meal", mealRepository.findAll());
+        model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
+
+
+
+
         return "/calories/caloriesList";
 
     }
-
 
     @GetMapping("/edit")
     public String prepareEdit(@RequestParam long idToEdit, Model model) {

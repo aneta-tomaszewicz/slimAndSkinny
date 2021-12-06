@@ -12,8 +12,17 @@ import java.util.List;
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Long> {
     Meal findMealByUserId(User user);
-    /*@Query("select m from Meal m order by da")
-    List<Meal>methodToSortedByDate()*/;
+
+/*    List<Meal>findAllByDateOrderByDateDesc();
+
+    @Override
+    List<Meal> findAll(Sort sort);*/
+
+
+    //Meal findAllByDateOrderByDateDesc();
+
+ /*   @Query("select m from Meal m sort")
+    List<Meal>methodToSortedByDate();*/
 
 
 
