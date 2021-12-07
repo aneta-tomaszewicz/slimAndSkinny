@@ -435,9 +435,9 @@
                                     i uzyskać wymarzoną figurę <br>
                                     Pomożemy Ci schudnąć, przytyć albo po prostu zacząć zdrowo się odżywiać. <br>
                                     Pierwszym krokiem jest zożenie konta <br>
-                                    <a href="/register">Załóż konto</a><br>
+                                    <a href="/register"><h5>Załóż konto</h5></a><br>
                                     Jesli masz już konto zaloguj się. <br>
-                                    <a href="/login">Zaloguj</a><br></h6>
+                                    <a href="/login"><h5>Zaloguj</h5></a><br></h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>

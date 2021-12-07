@@ -8,7 +8,7 @@
 <a href="/logout">Wyloguj</a>
 <left> <a href="/add">Dodaj kalorie</a> </left>
 <center><a href="/calculator">Policz na nowo zapotrzebowanie</a> </center>
-<h3></h3><p style="text-align: right">Dzienne zapotrzebowanie kaloryczne: <c:out value="${user.userDetails.caloriesDemand}"/></p></h3>
+<h3><p style="text-align: right">Dzienne zapotrzebowanie kaloryczne: <c:out value="${user.userDetails.caloriesDemand}"/></p></h3>
 
 
 
@@ -22,8 +22,9 @@
     <th>Podwieczorek:</th>
     <th>Kolacja:</th>
     <th>Podsumowanie:</th>
-    <th>Dzienne zapotrzebowanie:</th>
+    <th>Limit dzienny:</th>
     <th>Bilans:</th>
+    <th>Efekt:</th>
     <th>Akcja:</th>
 </tr>
 </thead>
@@ -41,6 +42,17 @@
         <td><c:out value="${meal.sum}"/></td>
         <td><c:out value="${user.userDetails.caloriesDemand}"/></td>
         <td><c:out value="${meal.dayBalance}"/></td>
+
+    <td> <c:choose>
+        <c:when test="${meal.sum > user.userDetails.caloriesDemand}">
+            Zjadłeś za dużo! </a><br>
+        </c:when>
+
+        <c:otherwise>
+           Jest dobrze, tak trzymaj
+        </c:otherwise>
+    </c:choose></td>
+
         <td><a href="edit?idToEdit=${meal.id}">Edytuj </a><br>
         <a href="remove?idToRemove=${meal.id}">Usuń </a></td>
 
