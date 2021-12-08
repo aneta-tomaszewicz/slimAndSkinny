@@ -21,20 +21,6 @@ public class LoginController {
         return "/user/login";
     }
 
-        /*@GetMapping("/logout")
-    public String logout(){
-        return "/user/logout";
-    }*/
-
-  /*   @GetMapping("/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "user/logoutInformation";*/
-
-
     @GetMapping("/logout")
     public String getLogoutPage(HttpServletRequest request, HttpServletResponse response) {
 
@@ -45,10 +31,6 @@ public class LoginController {
         return "redirect:/login";
 
     }
-    /*@GetMapping("/logoutInformation")
-    public String logout(){
-        return "/user/logout";
-    }*/
 
     }
 

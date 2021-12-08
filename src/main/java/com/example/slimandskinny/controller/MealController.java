@@ -26,13 +26,12 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+
 public class MealController {
 
     private final MealRepository mealRepository;
     private final UserRepository userRepository;
-    private final UserDetailsRepository userDetailsRepository;
-   /* private final UserDetails userDetails;*/
-    // private final Meal meal;
+
 
 
     @GetMapping("/add")
@@ -55,11 +54,11 @@ public class MealController {
 
         User user1 = userRepository.getById(user.getId());
         UserDetails userDetails = user1.getUserDetails();
-       // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+
         int dayBalance;
         dayBalance = meal.getSum() -userDetails.getCaloriesDemand();
         meal.setDayBalance(dayBalance);
-      //  meal.setMealDemand(userDetails.getCaloriesDemand());
+
 
         mealRepository.save(meal);
         return "redirect:/all";
@@ -67,15 +66,15 @@ public class MealController {
 
 
     @GetMapping("/all")
-    public String showAllCalories(Model model) {
+    public String showAllCalories(Model model, Meal meal) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
-        user = userRepository.getById(user.getId());
-        model.addAttribute("user", user);
-        model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
+        User user1 = userRepository.getById(user.getId());
+       // meal.setUser(user1);
 
-
-
+        model.addAttribute("user", user1);
+       // model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
+        model.addAttribute("meal", mealRepository.findAllByUser(user1));
 
         return "/calories/caloriesList";
 
@@ -104,8 +103,6 @@ public class MealController {
         dayBalance = meal.getSum() -userDetails.getCaloriesDemand();
         meal.setDayBalance(dayBalance);
        // meal.setMealDemand(userDetails.getCaloriesDemand());
-
-
         mealRepository.save(meal);
         return "redirect:/all";
     }
