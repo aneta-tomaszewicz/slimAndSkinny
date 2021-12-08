@@ -22,11 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/calculator/**", "/home").authenticated()
+                .antMatchers("/calculator/**", "/home", "/caloriesDemand", "/add","/all","/edit", "/remove").authenticated()
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
-                .and().logout().logoutSuccessUrl("/login").permitAll()
-                .and().exceptionHandling().accessDeniedPage("/user/403");
+                .and().logout().logoutSuccessUrl("/login").permitAll();
         http.csrf().disable();
     }
 

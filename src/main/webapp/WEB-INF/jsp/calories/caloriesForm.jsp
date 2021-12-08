@@ -14,30 +14,4 @@
 
     <input type="submit" value ="Zapisz"><br></form:form>
 
-<%--<form:form method="post" modelAttribute="meal">
-  <h2> Dzień : <form:input type ="date" path="date"/></h2> <br>
-Śniadanie:<form:input type="number" path="breakfast" placeholder="ilość kalorii"/>
-    <input type="submit" value ="Zapisz"><br></form:form>
-
-<form:form method="post" modelAttribute="meal">
-Drugie śniadanie:<form:input type="number" path="elevenses" placeholder="ilość kalorii"/>
-    <input type="submit" value ="Zapisz"><br>
-</form:form>
-
-    <form:form method="post" modelAttribute="meal">
-Obiad:<form:input type="number" path ="lunch" placeholder="ilość kalorii"/>
-    <input type="submit" value ="Zapisz"><br>
-    </form:form>
-
-    <form:form method="post" modelAttribute="meal">
-Podwieczorek:<form:input type="number" path ="tea" placeholder="ilość kalorii"/>
-    <input type="submit" value ="Zapisz"><br>
-    </form:form>
-
-    <form:form method="post" modelAttribute="meal">
-Kolacja:<form:input type="number" path="supper" placeholder="ilość kalorii"/>
-    <input type="submit" value ="Zapisz"><br>
-    </form:form>--%>
-
-
 

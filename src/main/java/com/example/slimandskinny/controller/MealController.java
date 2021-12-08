@@ -70,8 +70,6 @@ public class MealController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
-       // meal.setUser(user1);
-
         model.addAttribute("user", user1);
        // model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
         model.addAttribute("meal", mealRepository.findAllByUser(user1));
@@ -98,11 +96,10 @@ public class MealController {
         meal.setSum(sum);
         User user1 = userRepository.getById(user.getId());
         UserDetails userDetails = user1.getUserDetails();
-       // UserDetails userDetails = userDetailsRepository.findUserDetailsByUserId(user1.getId());
+
         int dayBalance;
         dayBalance = meal.getSum() -userDetails.getCaloriesDemand();
         meal.setDayBalance(dayBalance);
-       // meal.setMealDemand(userDetails.getCaloriesDemand());
         mealRepository.save(meal);
         return "redirect:/all";
     }
