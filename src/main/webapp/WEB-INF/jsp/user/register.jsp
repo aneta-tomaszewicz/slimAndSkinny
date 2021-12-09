@@ -92,6 +92,9 @@
                         <div class="text-center">
                             <a class="small" href="/login">Masz już konto ? Zaloguj się </a>
                         </div>
+                        <div class="text-center">
+                            <a class="small" href="/">Wróć do strony głównej</a>
+                        </div>
                     </div>
                 </div>
             </div>

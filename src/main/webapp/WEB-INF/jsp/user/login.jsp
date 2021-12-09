@@ -83,6 +83,9 @@
                                 <div class="text-center">
                                     <a class="small" href="/register">Załóż konto!</a>
                                 </div>
+                                <div class="text-center">
+                                    <a class="small" href="/">Wróć do strony głównej</a>
+                                </div>
                             </div>
                         </div>
                     </div>
