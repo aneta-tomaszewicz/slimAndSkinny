@@ -89,6 +89,13 @@
     <!-- Custom styles for this template-->
     <link href="<c:url value="/theme/css/sb-admin-2.css"/>" rel="stylesheet">
 
+    <style>
+        .error {
+            color: red;
+            border: 2px solid;
+        }
+    </style>
+
 
 </head>
 
@@ -113,7 +120,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="/home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Strona główna</span></a>
         </li>
@@ -421,11 +428,22 @@
                 <form:form method="post" modelAttribute="meal">
                     <form:hidden path="id"/>
                     <h4> Dzień : <form:input type ="date" path="date"/></h4> <br>
+                    <form:errors path="date" /><br>
+
                     Śniadanie:<form:input placeholder="ilość kalorii" path="breakfast" /><br>
+                    <form:errors path="breakfast"/><br>
+
                     Drugie śniadanie:<form:input type="number" path="elevenses" placeholder="ilość kalorii"/><br>
+                    <form:errors path="elevenses"/><br>
+
                     Obiad:<form:input type="number" path ="lunch" placeholder="ilość kalorii"/><br>
+                    <form:errors path="lunch"/><br>
+
                     Podwieczorek:<form:input type="number" path ="tea" placeholder="ilość kalorii"/><br>
+                    <form:errors path="tea"/><br>
+
                     Kolacja:<form:input type="number" path="supper" placeholder="ilość kalorii"/><br>
+                    <form:errors path="supper"/><br>
 
                     <input type="submit" value ="Zapisz" class="btn btn-primary btn-user btn-block"><br></form:form>
                         <%--

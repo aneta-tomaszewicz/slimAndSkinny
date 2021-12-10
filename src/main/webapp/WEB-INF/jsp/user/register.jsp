@@ -23,7 +23,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Slim and Skinny </title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,6 +54,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <form:input path="firstName" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Podaj imię "/>
+                                    <form:errors path="firstName" /><br>
                                 </div>
                                 <%--<div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
@@ -61,10 +62,12 @@
                             </div>
                             <div class="form-group">
                                 <form:input path="email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email"/>
+                                <form:errors path="email" /><br>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <form:input path="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                                    <form:errors path="password" /><br>
                                 </div>
                             <%--    <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">

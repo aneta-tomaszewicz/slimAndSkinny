@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,12 +21,19 @@ public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @DateTimeFormat(pattern="dd/MM/yyyy")
+    @NotNull
     private String date;
+    @NotNull
     private Integer breakfast;
+    @NotNull
     private Integer elevenses;
+    @NotNull
     private Integer lunch;
+    @NotNull
     private Integer tea;
+    @NotNull
     private Integer supper;
     private Integer sum;
     private Integer dayBalance;

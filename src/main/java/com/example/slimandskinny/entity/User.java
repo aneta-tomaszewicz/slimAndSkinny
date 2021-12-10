@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,11 @@ public class User {
     private long id;
 
     @Column(nullable = false, unique = true)
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String password;
+    @NotEmpty
     private String firstName;
     private String role = "user";
 
