@@ -1,7 +1,9 @@
 package com.example.slimandskinny.controller;
 import com.example.slimandskinny.entity.User;
+import com.example.slimandskinny.repository.MealRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import com.example.slimandskinny.service.CurrentUser;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,17 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
+@AllArgsConstructor
 @Controller
-
 public class UserController {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final MealRepository mealRepository;
 
-    public UserController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = bCryptPasswordEncoder;
-    }
+
 
     @GetMapping("/register")
     public String addUser(Model model) {
@@ -47,6 +46,7 @@ public class UserController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         model.addAttribute("user", user);
+        model.addAttribute("meal", mealRepository.findAllByUser(user));
         return "/user/home";
     }
 }

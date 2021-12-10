@@ -71,7 +71,7 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
         model.addAttribute("user", user1);
-       // model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
+        //model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
         model.addAttribute("meal", mealRepository.findAllByUser(user1));
 
         return "/calories/caloriesList";

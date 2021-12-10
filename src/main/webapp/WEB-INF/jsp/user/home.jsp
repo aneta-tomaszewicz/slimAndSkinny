@@ -466,7 +466,7 @@
         <a href="/calculator"><h5>Kalkulator Kalorii</h5>
 
 
-     </div>
+
 
  </c:when>
 
@@ -475,7 +475,67 @@
          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
          <h6 class="m-0 font-weight-bold text-primary">Dobrze, że jesteś z nami <br><br>
          Jesli zmieni się Twoja waga, stopień aktywności fizycznej bądź cel, który chcesz osiagnąć, przelicz zapotrzebowanie kaloryczne jeszcze raz<br><br>
-          <a href="/calculator"><h5>Kalkulator Kalorii</h5>
+
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+       <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Dzienne zapotrzebowanie kaloryczne: <c:out value="${user.userDetails.caloriesDemand}"/></h6>
+       </div>
+       <div class="card-body">
+        <div class="table-responsive">
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+           <th>Dzień:</th>
+           <th>Śniadanie:</th>
+           <th>Drugie śniadanie:</th>
+           <th>Obiad:</th>
+           <th>Podwieczorek:</th>
+           <th>Kolacja:</th>
+           <th>Suma:</th>
+            <%-- <th>Limit dzienny:</th>--%>
+           <th>Bilans:</th>
+           <th>Efekt:</th>
+           <th>Akcja:</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <c:forEach items="${meal}" var="meal">
+
+           <tr>
+            <td><strong><c:out value="${meal.date}"/></strong></td>
+            <td><c:out value="${meal.breakfast}"/></td>
+            <td><c:out value="${meal.elevenses}"/></td>
+            <td><c:out value="${meal.lunch}"/></td>
+            <td><c:out value="${meal.tea}"/></td>
+            <td><c:out value="${meal.supper}"/></td>
+            <td><c:out value="${meal.sum}"/></td>
+             <%--<td><c:out value="${user.userDetails.caloriesDemand}"/></td>--%>
+            <td><c:out value="${meal.dayBalance}"/></td>
+
+            <td> <c:choose>
+             <c:when test="${meal.sum > user.userDetails.caloriesDemand}">
+              Zjadłeś za dużo! </a><br>
+             </c:when>
+
+             <c:otherwise>
+              Jest dobrze, tak trzymaj
+             </c:otherwise>
+            </c:choose></td>
+
+            <td><a href="edit?idToEdit=${meal.id}"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edytuj </a><br>
+             <a href="remove?idToRemove=${meal.id}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Usuń </a></td>
+
+           </tr>
+
+          </c:forEach>
+
+
+          </tbody>
+         </table>
+        </div>
+       </div>
 
 
          </c:otherwise>
