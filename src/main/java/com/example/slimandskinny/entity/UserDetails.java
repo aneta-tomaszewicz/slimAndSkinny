@@ -1,11 +1,13 @@
 package com.example.slimandskinny.entity;
 
+import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -19,19 +21,20 @@ public class UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    private int age;
-    @NotNull
-    private double weight;
-    @NotNull
-    private int height;
-    @NotNull
-    private int gender;
-    @NotNull
-    private double activity;
-    @NotNull
-    private int purpose;
-    private int caloriesDemand;
+
+    private Integer age;
+
+    private Double weight;
+
+    private Integer height;
+
+    private Integer gender;
+
+    private Double activity;
+
+    private Integer purpose;
+
+    private Integer caloriesDemand;
 
 
 }

@@ -53,7 +53,7 @@ public class UserController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         user = userRepository.getById(user.getId());
         model.addAttribute("user", user);
-        model.addAttribute("meal", mealRepository.findAllByUser(user));
+        model.addAttribute("meal", mealRepository.getAllByUserOrderByDateDesc(user));
         return "/user/home";
     }
 }
