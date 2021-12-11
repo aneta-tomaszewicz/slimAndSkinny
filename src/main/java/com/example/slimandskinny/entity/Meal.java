@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -38,9 +37,7 @@ public class Meal {
     private Integer sum;
     private Integer dayBalance;
 
-
     @ManyToOne
     private User user;
-
 
 }

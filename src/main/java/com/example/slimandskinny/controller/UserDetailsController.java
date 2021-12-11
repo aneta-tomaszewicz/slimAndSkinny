@@ -27,7 +27,6 @@ public class UserDetailsController {
 
     }
 
-
     @PostMapping("/calculator")
 
     public String calculateCalories(@RequestParam (required = false) Integer age, @RequestParam(required = false) Double weight, @RequestParam(required = false) Integer height,@RequestParam(required = false) Integer gender, @RequestParam(required = false)  Double activity, @RequestParam(required = false)  Integer purpose) {

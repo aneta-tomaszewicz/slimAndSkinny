@@ -38,5 +38,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
-
 }

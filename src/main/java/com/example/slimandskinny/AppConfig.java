@@ -11,8 +11,6 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.LocaleContextResolver;
 import javax.validation.Validator;
-
-
 import java.util.Locale;
 
 @Configuration
@@ -40,6 +38,4 @@ public class AppConfig {
         lvfb.setValidationMessageSource(messageSource());
         return lvfb;
     }
-
-
 }

@@ -9,5 +9,4 @@ public class SlimAndSkinnyApplication {
     public static void main(String[] args) {
         SpringApplication.run(SlimAndSkinnyApplication.class, args);
     }
-
 }

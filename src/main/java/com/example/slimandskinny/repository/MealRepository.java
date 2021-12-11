@@ -9,9 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Long> {
-    Meal findMealByUserId(User user);
-   List<Meal>findAllByUser(User user);
+
    List<Meal>getAllByUserOrderByDateDesc(User user);
-
-
 }

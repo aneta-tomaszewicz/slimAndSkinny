@@ -4,26 +4,19 @@ import com.example.slimandskinny.entity.Meal;
 import com.example.slimandskinny.entity.User;
 import com.example.slimandskinny.entity.UserDetails;
 import com.example.slimandskinny.repository.MealRepository;
-import com.example.slimandskinny.repository.UserDetailsRepository;
 import com.example.slimandskinny.repository.UserRepository;
 import com.example.slimandskinny.service.CurrentUser;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.apache.catalina.LifecycleState;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
-import java.util.List;
 
 
 @Controller
@@ -77,8 +70,6 @@ public class MealController {
         User user = ((CurrentUser) auth.getPrincipal()).getUser();
         User user1 = userRepository.getById(user.getId());
         model.addAttribute("user", user1);
-        //model.addAttribute("meal", mealRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
-        //model.addAttribute("meal", mealRepository.findAllByUser(user1));
         model.addAttribute("meal", mealRepository.getAllByUserOrderByDateDesc(user1));
 
         return "/calories/caloriesList";
@@ -124,9 +115,4 @@ public class MealController {
         }
         return "redirect:/all";
     }
-
-
-
-
-
 }

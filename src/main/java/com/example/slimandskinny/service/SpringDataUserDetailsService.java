@@ -8,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-
 import java.util.Collections;
 
 @Component
@@ -35,9 +34,5 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         return new CurrentUser(user.getEmail(),user.getPassword(),
                 Collections.singleton(authorities), user);
 
-
     }
-
 }
-
-
